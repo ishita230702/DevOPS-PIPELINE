@@ -11,10 +11,10 @@ pipeline{
         stage('Environment Check') {
             steps {
                 // Print environment variables
-                sh 'env'
+                bat 'env'
                 
                 // Print Maven version
-                sh 'mvn -version'
+                bat 'mvn -version'
             }
         }
 
@@ -23,10 +23,10 @@ pipeline{
                 // Navigate to the project directory if necessary
                 dir('relative/path/to/project') {
                     // List files to ensure pom.xml is present
-                    sh 'ls -la'
+                    bat 'ls -la'
 
                     // Run Maven build
-                    sh 'mvn clean package'
+                    bat 'mvn clean package'
                 }
             }
 
