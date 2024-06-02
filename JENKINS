@@ -11,7 +11,7 @@ pipeline{
         stage('Environment Check') {
             steps {
                 // Print environment variables
-                bat 'env'
+                bat 'set'
                 
                 // Print Maven version
                 bat 'mvn -version'
