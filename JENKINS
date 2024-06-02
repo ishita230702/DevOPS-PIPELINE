@@ -14,21 +14,21 @@ pipeline{
                 bat 'set'
                 
                 // Print Maven version
-                bat 'mvn -version'
+                // bat 'mvn -version'
             }
         }
 
-        stage('Build') {
-            steps {
-                // Navigate to the project directory if necessary
-                dir('relative/path/to/project') {
-                    // List files to ensure pom.xml is present
-                    bat 'ls -la'
+        // stage('Build') {
+        //     steps {
+        //         // Navigate to the project directory if necessary
+        //         dir('relative/path/to/project') {
+        //             // List files to ensure pom.xml is present
+        //             bat 'ls -la'
 
-                    // Run Maven build
-                    bat 'mvn clean package'
-                }
-            }
+        //             // Run Maven build
+        //             bat 'mvn clean package'
+        //         }
+        //     }
 
         // stage('Build'){
         //     steps{
