@@ -8,35 +8,18 @@ pipeline{
 
     stages{
 
-        stage('Environment Check') {
-            steps {
-                // Print environment variables
-                bat 'set'
-                
-                // Print Maven version
-                bat 'mvn -version'
+        stage('Build'){
+            steps{
+                // echo "fetch the source code from ${DIRECTORY_PATH}"
+                echo "Build the code using Maven"
+                bat 'mvn clean package'
             }
         }
-
-        // stage('Build') {
-        //     steps {
-        //         // Navigate to the project directory if necessary
-        //         dir('relative/path/to/project') {
-        //             // List files to ensure pom.xml is present
-        //             bat 'ls -la'
-
-        //             // Run Maven build
-        //             bat 'mvn clean package'
-        //     }
-        //}
-
-        // stage('Build'){
-        //     steps{
-        //         // echo "fetch the source code from ${DIRECTORY_PATH}"
-        //         echo "Build the code using Maven"
-        //         bat 'mvn clean package'
-        //     }
-        // }
+        stage('Test'){
+            steps {
+                bat 'mvn test'
+            }
+        }
         // stage('Unit and Integration Tests') {
         //     steps {
         //         echo "Run unit tests using JUnit"
