@@ -27,8 +27,8 @@ pipeline{
 
         //             // Run Maven build
         //             bat 'mvn clean package'
-        //         }
         //     }
+        //}
 
         // stage('Build'){
         //     steps{
@@ -106,6 +106,6 @@ pipeline{
         //     steps{
         //         echo "Deployment to AWS EC2. Started and completed!"
         //     }
-        }       
+        // }       
     }     
 }
