@@ -44,12 +44,15 @@ pipeline{
         //         }
         //     }
         // }
-        // stage('Code Analysis') {
-        //     steps {
-        //         echo "Analyse the code"
-        //         echo"Code analyse tool:-SonarQube"
-        //     }
-        // }
+        stage('Code Quality check') {
+            steps {
+                echo "Analyse the code"
+                echo"Code analyse tool:-SonarQube"
+                withSonarQubeEnv('sonarqube') {
+                    bat 'mvn sonar:sonar'
+                }
+            }
+        }
         // stage('Security scan'){
         //     steps{
         //         echo "Scanning for security..."
