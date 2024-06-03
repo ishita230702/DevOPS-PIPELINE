@@ -3,6 +3,9 @@ package com.example.demo;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -11,11 +14,16 @@ import java.time.format.DateTimeFormatter;
 public class GreetingController {
 
     @GetMapping("/")
-    public String greetUser(@RequestParam(value = "name", defaultValue = "World") String name) {
+    public ResponseEntity<String> greetUser(@RequestParam(value = "name", defaultValue = "World") String name) {
         String currentTime = getCurrentTime();
         String weatherInfo = getWeatherInfo();
-        
-        return generateHtmlResponse(name, currentTime, weatherInfo);
+
+        String htmlContent = generateHtmlResponse(name, currentTime, weatherInfo);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "text/html; charset=UTF-8");
+
+        return new ResponseEntity<>(htmlContent, headers, HttpStatus.OK);
     }
 
     private String getCurrentTime() {
