@@ -77,12 +77,22 @@ pipeline{
         //         }
         //     }
         // }
-        // stage('Deploy to Staging') {
-        //     steps {
-        //         echo "deploy the application t"
-        //         echo"Deploy tool: AWS EC2"
-        //     }
-        // }
+
+
+        stage('Build Docker Image'){
+            steps {
+                echo 'Building Image'
+                bat 'docker --version'
+                bat 'docker build -t my-spring-boot-project .'
+            }
+        } 
+        stage('Deploy to Staging') {
+            steps {
+                echo "deploy the application "
+                bat 'docker-compose down'
+                bat 'docker-compose up -d --build'
+            }
+        }
         // stage('Integration Tests on Staging') {
         //     steps {
         //         echo "Run integration tests on the staging environment"
