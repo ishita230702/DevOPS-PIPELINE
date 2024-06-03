@@ -92,16 +92,6 @@ pipeline{
                 bat 'docker-compose down'
                 bat 'docker-compose up -d --build'
             }
-        }
-        // stage('Integration Tests on Staging') {
-        //     steps {
-        //         echo "Run integration tests on the staging environment"
-        //     }
-        // }
-        // stage('Deploy to Production'){
-        //     steps{
-        //         echo "Deployment to AWS EC2. Started and completed!"
-        //     }
-        // }       
+        }     
     }     
 }
