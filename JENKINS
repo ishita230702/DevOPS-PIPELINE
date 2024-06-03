@@ -1,38 +1,31 @@
-pipeline{
+pipeline {
     agent any
-    // environment{
-        
-    // }
-
-        
-
-    stages{
-
-        stage('Build'){
-            steps{
-                // echo "fetch the source code from ${DIRECTORY_PATH}"
+    stages {
+        stage('Build') {
+            steps {
                 echo "Build the code using Maven"
                 bat 'mvn clean package'
             }
         }
-        stage('Test'){
+        stage('Test') {
             steps {
+                echo "Run unit tests"
                 bat 'mvn test'
             }
         }
-        stage('Build Docker Image'){
+        stage('Build Docker Image') {
             steps {
-                echo 'Building Image'
+                echo 'Building Docker Image'
                 bat 'docker --version'
                 bat 'docker build -t my-spring-boot-project .'
             }
-        } 
+        }
         stage('Deploy to Staging') {
             steps {
-                echo "deploy the application "
+                echo "Deploy the application"
                 bat 'docker-compose down'
                 bat 'docker-compose up -d --build'
             }
-        }     
-    }     
+        }
+    }
 }
